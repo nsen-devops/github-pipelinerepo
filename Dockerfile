@@ -4,6 +4,6 @@ FROM nginx:latest
 #WORKDIR /usr/share/nginx/html/
 #CMD rm -rf index.html
 #RUN wget -O /usr/share/nginx/html/index.html https://github.com/nsen-devops/mydevrepos/blob/master/index.html
-ADD index.html > /usr/share/nginx/html/index.html
+ADD index.html /usr/share/nginx/html/index.html
 CMD ["nginx", "-g", "daemon off;"]
 EXPOSE 80
