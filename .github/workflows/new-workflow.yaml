@@ -16,10 +16,10 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: projects/lucid-container-357617/locations/us-central1-c/clusters/n-test-cicd-cluster    # Add your cluster name here.
+  GKE_CLUSTER: n-test-cicd-cluster    # Add your cluster name here.
   GKE_ZONE: us-central1-c   # Add your cluster zone here.
-  DEPLOYMENT_NAME: gke-test # Add your deployment name here.
-  IMAGE: nitin-nginx-image
+  DEPLOYMENT_NAME: nginx-deployment # Add your deployment name here.
+  IMAGE: nitin-image-repo
 
 jobs:
   setup-build-publish-deploy:
@@ -29,14 +29,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: 'actions/checkout@v4'
-      uses: 'google-github-actions/auth@v2'
+      uses: actions/checkout@v4
 
     # Setup gcloud CLI
-    - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
+    - uses: 'google-github-actions/auth@v2'
       with:
-        service_account_key: ${{ secrets.GKE_SA_KEY }}
-        project_id: ${{ secrets.GKE_PROJECT }}
+        credentials_json: '${{ secrets.GKE_SA_KEY }}'
 
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
@@ -48,8 +46,6 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-        credentials: ${{ secrets.GKE_SA_KEY }}
-        project_id: $PROJECT_ID
 
     # Build the Docker image
     - name: Build
