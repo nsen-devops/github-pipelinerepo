@@ -16,7 +16,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: n-test-cicd-cluster    # Add your cluster name here.
+  GKE_CLUSTER: projects/lucid-container-357617/locations/us-central1-c/clusters/n-test-cicd-cluster    # Add your cluster name here.
   GKE_ZONE: us-central1-c   # Add your cluster zone here.
   DEPLOYMENT_NAME: gke-test # Add your deployment name here.
   IMAGE: nitin-nginx-image
