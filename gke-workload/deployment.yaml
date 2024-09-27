@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginxcustom
-        image: 'gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA'
+        image: 'gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA'
         ports:
         - containerPort: 80
 
