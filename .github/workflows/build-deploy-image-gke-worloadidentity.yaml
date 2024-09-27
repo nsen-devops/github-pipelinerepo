@@ -26,13 +26,13 @@ jobs:
     - name: 'deploy with gke-deploy cli'
       uses: 'google-github-actions/deploy-gke-container@v0.1'
       with:
-        image: 'my-image'
-        app_name: 'my-app'
-        region: 'us-central1'
-        cluster_name: 'my-cluster'
-        project_id: 'my-project'
-        namespace: 'my-namespace'
-        expose: '8000'
+        image: 'nitin-image-repo'
+        app_name: 'nginx-deployment'
+        zone: 'us-central1-c'
+        cluster_name: 'n-test-cicd-cluster'
+        project_id: '$PROJECT_ID'
+        namespace: 'default'
+        expose: '80'
     
     - name: 'get-deployments'
       shell: bash
