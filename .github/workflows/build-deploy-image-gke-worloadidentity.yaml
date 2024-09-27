@@ -6,7 +6,8 @@ on:
       - main
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  PROJECT_ID: ${{ secrets.GKE_PROJECT_ID }}
+  PROJECT_NUMBER: ${{ secrets.GKE_PROJECT_NUMBER }}
   GKE_CLUSTER: n-test-cicd-cluster    # Add your cluster name here.
   GKE_ZONE: us-central1-c   # Add your cluster zone here.
 
@@ -24,7 +25,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
       with:
-        workload_identity_provider: 'projects/$PROJECT_ID/locations/global/workloadIdentityPools/for-github-gke-auth/providers/githubactions'
+        workload_identity_provider: 'projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/for-github-gke-auth/providers/githubactions'
         create_credentials_file: true
         service_account: 'nitin-gke-auth-sa@lucid-container-357617.iam.gserviceaccount.com'
 
