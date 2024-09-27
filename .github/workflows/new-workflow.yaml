@@ -74,19 +74,8 @@ jobs:
     #   ./kustomize build . | kubectl apply -f -
     #   kubectl rollout status deployment/$DEPLOYMENT_NAME
     #   kubectl get services -o wide
-    - name: 'deploy with gke-deploy cli'
-      uses: 'google-github-actions/deploy-gke-container@v0.1'
-      with:
-        image: 'gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA'
-        app_name: '$DEPLOYMENT_NAME'
-        zone: '$GKE_ZONE'
-        cluster_name: '$GKE_CLUSTER'
-        project_id: 'PROJECT_ID'
-        namespace: 'default'
-        expose: '80'
-    
-    - name: 'get-deployments'
-      shell: bash
-      run: |
-        kubectl get pods -n my-namespace
-        kubectl get deployment -n my-namespace
+    # Deploy the Docker image to the GKE cluster
+    - name: Deploy
+      run: |-
+        kubectl apply -f ./gke-workload/deployment.yaml
+        kubectl get pods
