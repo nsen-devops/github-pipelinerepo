@@ -23,7 +23,7 @@ jobs:
         workload_identity_provider: 'projects/$PROJECT_ID/locations/global/workloadIdentityPools/for-github-gke-auth/providers/githubactions'
 
     - name: 'deploy with gke-deploy cli'
-      uses: 'google-github-actions/deploy-gke-container@v2'
+      uses: 'google-github-actions/deploy-gke@v0.1'
       with:
         image: 'nitin-image-repo'
         app_name: 'nginx-deployment'
