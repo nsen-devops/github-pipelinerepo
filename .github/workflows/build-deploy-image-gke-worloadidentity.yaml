@@ -7,6 +7,8 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: n-test-cicd-cluster    # Add your cluster name here.
+  GKE_ZONE: us-central1-c   # Add your cluster zone here.
 
 jobs:
   job_id:
@@ -22,19 +24,13 @@ jobs:
       with:
         workload_identity_provider: 'projects/$PROJECT_ID/locations/global/workloadIdentityPools/for-github-gke-auth/providers/githubactions'
 
-    - name: 'deploy with gke-deploy cli'
-      uses: 'google-github-actions/deploy-gke@v0.1'
+    - uses: google-github-actions/get-gke-credentials@v2
       with:
-        image: 'nitin-image-repo'
-        app_name: 'nginx-deployment'
-        zone: 'us-central1-c'
-        cluster_name: 'n-test-cicd-cluster'
-        project_id: '$PROJECT_ID'
-        namespace: 'default'
-        expose: '80'
-    
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
+
     - name: 'get-deployments'
       shell: bash
       run: |
-        kubectl get pods -n my-namespace
-        kubectl get deployment -n my-namespace
+        kubectl get pods
+        kubectl get deploymen
