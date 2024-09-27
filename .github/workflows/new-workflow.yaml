@@ -77,8 +77,8 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |-
-        sed -i -e 's/DOCKER_IMG_TAG/'${{ github.sha }}'/' ./kubernetes/book-mgmt-api-deploy.yaml
-        sed -i -e 's/PROJECT_ID/'$PROJECT_ID'/' ./kubernetes/book-mgmt-api-deploy.yaml
-        sed -i -e 's/IMAGE/'$IMAGE'/' ./kubernetes/book-mgmt-api-deploy.yaml
+        sed -i -e 's/DOCKER_IMG_TAG/'${{ github.sha }}'/' ./gke-workload/deployment.yaml
+        sed -i -e 's/PROJECT_ID/'$PROJECT_ID'/' ./gke-workload/deployment.yaml
+        sed -i -e 's/IMAGE/'$IMAGE'/' ./gke-workload/deployment.yaml
         kubectl apply -f ./gke-workload/deployment.yaml
   
