@@ -25,7 +25,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v2'
       with:
-        workload_identity_provider: 'projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/for-github-gke-auth/providers/githubactions'
+        workload_identity_provider: 'projects/${{ env.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/for-github-gke-auth/providers/githubactions'
         create_credentials_file: true
         service_account: 'nitin-gke-auth-sa@lucid-container-357617.iam.gserviceaccount.com'
 
