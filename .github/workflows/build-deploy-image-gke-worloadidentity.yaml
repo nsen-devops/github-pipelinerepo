@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
-    runs-on: ubuntu-latest
+    runs-on: nsen-gh-runner
 
     steps:
     - name: Checkout
